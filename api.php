@@ -43,7 +43,7 @@ $cc7 = substr($cc,10,5);
 if($cbin == "3"){
     $cardnum = "$cc5 $cc6 $cc7";
 }else{
-   $cardnum = "$cc1 $cc2 $cc3 $cc4"; 
+   $cardnum = "$cc1 $cc2 $cc3 $cc4";
 }
 
 If(strlen($ano) > 2)
@@ -141,7 +141,7 @@ $lname = 'Wang';
 $counters = substr(str_shuffle(str_repeat("0123456789abcdefghijklmopqrstuvxyz", 32)), 0, 32);
 $counters2 = substr(str_shuffle(str_repeat("0123456789abcdefghijklmopqrstuvxyz", 32)), 0, 32);
 
-$dbtime = substr(str_shuffle(str_repeat("0123456789", 10)), 0, 10);
+$dbtime = substr(str_shuffle(str_repeat("0123456789", 20)), 0, 10);
 
 
 
@@ -258,4 +258,3 @@ ob_flush();
       // echo $result;
 //echo $browser;
 ?>
-
