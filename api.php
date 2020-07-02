@@ -175,7 +175,7 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, array(
 'user-agent: '.$browser.''
 ));
 
-curl_setopt($ch, CURLOPT_POSTFIELDS, '{"key":"lvpb_MzIzZGE4NWMtYWVkNC00YzU1LTg2ZTgtODg3MTExOWM3YWQ4","card":{"number":"'.$cc.'","cvc":"'.$ano.'","expMonth":'.$mes1.',"expYear":'.$ano.',"addressLine1":"12 avenue","addressLine2":"","addressCountry":"AU","addressState":"NSW","addressZip":"2150","addressCity":"Miami"},"source":"SIMPLIFYJS"}');
+curl_setopt($ch, CURLOPT_POSTFIELDS, '{"key":"lvpb_MzIzZGE4NWMtYWVkNC00YzU1LTg2ZTgtODg3MTExOWM3YWQ4","card":{"number":"'.$cc.'","cvc":"'.$cvv.'","expMonth":'.$mes1.',"expYear":'.$ano.',"addressLine1":"12 avenue","addressLine2":"","addressCountry":"AU","addressState":"NSW","addressZip":"2150","addressCity":"Miami"},"source":"SIMPLIFYJS"}');
 
 
 $b_pago = curl_exec($ch);
