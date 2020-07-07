@@ -238,7 +238,7 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, array(
 'accept-encoding: gzip, deflate',
 'accept-language: en-US,en;q=0.9',
 'content-type: application/x-www-form-urlencoded; charset=UTF-8',
-'cookie: wpfront-notification-bar-landingpage=1; wp_woocommerce_session_8e83faf0a70e323ccef66f6553c0c86a=c1487aa6aff94ee52205600e77733658%7C%7C1594203829%7C%7C1594200229%7C%7C8bb4b29f44723f4ac5cd7fd0e66aa134; mailchimp.cart.current_email=pubgkittu@gmail.com; mailchimp_user_email=pubgkittu%40gmail.com; mailchimp.cart.previous_email=pubgkittu@gmail.com; mailchimp_landing_site=https%3A%2F%2Fginginanddry.net.au%2Fwp-admin%2Fadmin-ajax.php%3Faction%3Dmailchimp_set_user_by_email%26email%3Dpubgkittu%40gmail.com%26language%3Den; woocommerce_items_in_cart=1; woocommerce_cart_hash=0aaa86d9404f8e5175db0904eaa54d3a',
+'cookie: wpfront-notification-bar-landingpage=1; wp_woocommerce_session_8e83faf0a70e323ccef66f6553c0c86a=c1487aa6aff94ee52205600e77733658%7C%7C1594203829%7C%7C1594200229%7C%7C8bb4b29f44723f4ac5cd7fd0e66aa134; mailchimp.cart.current_email=pubgkittu@gmail.com; mailchimp_user_email=pubgkittu%40gmail.com; mailchimp.cart.previous_email=pubgkittu@gmail.com; woocommerce_items_in_cart=1; woocommerce_cart_hash=c46d223adeb3bf2a66092f70ab9784b3; mailchimp_landing_site=https%3A%2F%2Fginginanddry.net.au%2Fwp-admin%2Fadmin-ajax.php%3Faction%3Dmailchimp_set_user_by_email%26email%3Dpubgkittu%40gmail.com%26language%3Den',
 'origin: https://ginginanddry.net.au',
 'referer: https://ginginanddry.net.au/checkout-2/',
 'user-agent: '.$browser.''
