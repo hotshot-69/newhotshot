@@ -238,7 +238,7 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, array(
 'accept-encoding: gzip, deflate',
 'accept-language: en-US,en;q=0.9',
 'content-type: application/x-www-form-urlencoded; charset=UTF-8',
-'cookie: wp_woocommerce_session_4b45f9b4c753d4ccbd419dae4a3fc34b=a1755acb33364e87b11ff772571a1f22%7C%7C1594528298%7C%7C1594524698%7C%7Cd204701bde659223ba8cde4b3013fa63; woocommerce_items_in_cart=1; woocommerce_cart_hash=44359c586d92be4ad3cdf73a5b525e76; woocommerce_recently_viewed=7472%7C7799%7C7504; __cfduid=dc718970894158646515841580545f72e1594470680; TawkConnectionTime=0',
+'cookie: wp_woocommerce_session_4b45f9b4c753d4ccbd419dae4a3fc34b=a1755acb33364e87b11ff772571a1f22%7C%7C1594528298%7C%7C1594524698%7C%7Cd204701bde659223ba8cde4b3013fa63; woocommerce_recently_viewed=7472%7C7799%7C7504; __cfduid=dc718970894158646515841580545f72e1594470680; woocommerce_items_in_cart=1; woocommerce_cart_hash=44359c586d92be4ad3cdf73a5b525e76; TawkConnectionTime=0',
 'origin: https://telkee.com.au',
 'referer: https://telkee.com.au/checkout/',
 'user-agent: '.$browser.''
