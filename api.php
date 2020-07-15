@@ -205,7 +205,7 @@ curl_close($ch);
 // // //////////////////////// START REQUEST 2 ////////////////////////
 
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, 'https://www.citytechnology.com.au/store/index.php?route=payment/anz/send');
+curl_setopt($ch, CURLOPT_URL, 'https://www.itytechnology.com.au/store/index.php?route=payment/anz/send');
 
 //////////////////////// PROXY CALLS ////////////////////////////
 //               REMOVE '//' FOR PROXIES TO WORK BELOW
