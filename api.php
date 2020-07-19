@@ -238,7 +238,8 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, array(
 'accept-encoding: gzip, deflate, br',
 'accept-language: en-US,en;q=0.9',
 'content-type: application/x-www-form-urlencoded; charset=UTF-8',
-'cookie: OCSESSID=ce25908ab86a67a9ebcfe5d612; language=en-gb; currency=AUD; mailchimp_integration_popup=triggered',
+'cookie: OCSESSID=ce25908ab86a67a9ebcfe5d612; language=en-gb; currency=AUD; mailchimp_integration_popup=triggered
+',
 'origin: https://bttw.com.au',
 'referer: https://bttw.com.au/index.php?route=checkout/checkout',
 'user-agent: '.$browser.''
